@@ -1,0 +1,132 @@
+﻿@using PagedList.Mvc
+@using Reservation.PL.Resources
+@using PagedList
+@model PagedList<Reservation.Entities.User>
+@{
+    ViewBag.Title = "List";
+
+    //string currentDateSort = ViewBag.CurrentSort;
+    //if (string.IsNullOrEmpty(currentDateSort))
+    //{
+    //    currentDateSort = "date_desc";
+    //}
+}
+@Styles.Render("~/Content/select")
+@Styles.Render("~/Content/pagedlist")
+
+<section class="action-section">
+    <div class="container">
+        <div class="row action-row">
+            <div class="col-lg-3 action-name">
+                User List
+            </div>
+            <div class="col-lg-4 action-desc">
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed d
+            </div>
+            <div class="col-lg-4">
+                @*<input type="button" name="list" class="action-btn" value="@Resource.create_user_action">*@
+                @Html.ActionLink(Resource.create_user_action, "Create", "User", null, new { @class = "btn btn-primary" })
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="control-section">
+    <div class="container control-container">
+        <div class="row filter">
+            <div class="col-lg-2 text-left">
+                <select id="list_filter" name="list_filter" class="selectpicker">
+                    <option class="disabled">Filter By Birth</option>
+                    <option value="asc">By Date Ascending</option>
+                    <option value="desc">By Date Descending</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-lg-12 user-table">
+                <table class="table table-responsive">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>@Resource.user_name</th>
+                            <th>@Resource.user_type</th>
+                            <th>@Resource.user_phone</th>
+                            <th>@Resource.user_dob</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <th scope="row">@Html.DisplayFor(modelItem => item.UserId)</th>
+                                <td>@Html.DisplayFor(modelItem => item.Name)</td>
+                                <td>@Html.DisplayFor(modelItem => item.UserTypeId)</td>
+                                <td>@Html.DisplayFor(modelItem => item.Phone)</td>
+                                <td>@Html.DisplayFor(modelItem => item.Dob)</td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        @*TODO: use Package PagedList.Mvc*@
+        @*<div class="row">
+                <div class="text-center">
+                    <ul class="pagination">
+                        <li><a href="#" aria-label="Previous"><span aria-hidden="true">«</span></a></li>
+                        <li><a href="#">1</a></li>
+                        <li><a href="#">2</a></li>
+                        <li><a href="#">3</a></li>
+                        <li><a href="#">4</a></li>
+                        <li><a href="#">5</a></li>
+                        <li><a href="#" aria-label="Next"><span aria-hidden="true">»</span></a></li>
+                    </ul>
+                </div>
+            </div>
+        *@
+
+        <div class="row">
+            <div class="text-center" style="padding-bottom: 10px;">
+                @Html.PagedListPager(Model, page => Url.Action("List", new { page, pageSize = Model.PageSize }))
+                @Resource.page_show @Model.FirstItemOnPage @Resource.page_to @Model.LastItemOnPage @Resource.page_of @Model.TotalItemCount
+            </div>
+        </div>
+    </div>
+</section>
+
+@section scripts{
+    @Scripts.Render("~/bundles/selectjs")
+    <script type="text/javascript">
+        $(document).ready(function () {
+
+            //$("#list_filter").select2({
+            //    placeholder: "Select a state"
+            //});
+
+            $('#list_filter').change(function () {
+                var asc = $('#list_filter').val() === 'asc' ? true : false;
+                var url = '@Html.Raw(Url.Action("List", "User", new { sort=true, field="date"}))';
+                $.ajax({
+                    type: "POST",
+                    url: url + '&asc=' + asc,
+                    async: true,
+                    beforeSend: function () {
+                        // Display loading image
+                    },
+                    success: function (result) {
+                        // Handle the response here.
+                    },
+                    complete: function () {
+                        // Hide loading image.
+                    },
+                    error: function (jqXHR, textStatus, errorThrown) {
+                        // Handle error.
+                    }
+                });
+            });
+
+        });
+    </script>
+}
