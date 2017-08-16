@@ -61,6 +61,24 @@ namespace Reservation.PL.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Delete.
+        /// </summary>
+        public static string action_delete {
+            get {
+                return ResourceManager.GetString("action_delete", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Edit.
+        /// </summary>
+        public static string action_edit {
+            get {
+                return ResourceManager.GetString("action_edit", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Create User.
         /// </summary>
         public static string create_user_action {
@@ -93,6 +111,15 @@ namespace Reservation.PL.Resources {
         public static string page_to {
             get {
                 return ResourceManager.GetString("page_to", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Actions.
+        /// </summary>
+        public static string user_actions {
+            get {
+                return ResourceManager.GetString("user_actions", resourceCulture);
             }
         }
         

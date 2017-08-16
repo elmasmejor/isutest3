@@ -1,19 +1,18 @@
 ﻿@using Reservation.PL.Resources
 @model Reservation.Entities.User
 @{
-    ViewBag.Title = "Create";
+    ViewBag.Title = "Edit - " + Model.Name;
 }
 @*@ViewBag.UserTypes.Count*@
 
 @Styles.Render("~/Content/select")
 @Styles.Render("~/Content/datedropper")
 
-
 <section class="section-info">
     <div class="container">
         <div class="row row-info">
             <div class="col-lg-4 col-md-4 col-sm-4">
-                <p class="action-title">Create User</p>
+                <p class="action-title">Editing User - @Model.Name</p>
             </div>
             <div class="col-lg-4 col-md-4 col-sm-4">
                 <p class="text-center">
@@ -50,7 +49,7 @@
                     <input type="tel" class="form-control" id="phone" placeholder="@Resource.user_phone" data-bind="value: phone">
                 </div>
                 <div class="col-md-3">
-                    <input type="date" class="form-control" id="dob" placeholder="@Resource.user_dob" data-bind="value: dob">
+                    <input type="date" class="form-control" id="dob" placeholder="@Resource.user_dob" data-bind="value: dob" style="background-color: white;">
                 </div>
             </div>
         </div>
@@ -61,7 +60,7 @@
         </div>
     <div class="container">
         <div class="row row-save">
-            <button id="saveuser" class="btn btn-default" type="button">Save</button>
+            <button id="edituser" class="btn btn-default" type="button">Edit</button>
         </div>
     </div>
         </form>
@@ -69,16 +68,24 @@
 
 
 @section scripts{
-        @Scripts.Render("~/bundles/selectjs")
-        @Scripts.Render("~/bundles/datejs")
-        @Scripts.Render("~/bundles/knockout")
-        @Scripts.Render("~/bundles/ko-user")
-        <script type="text/javascript">
-            User.SaveUrl = '@Url.Action("Save", "User")';
+    @Scripts.Render("~/bundles/selectjs")
+    @Scripts.Render("~/bundles/datejs")
+    @Scripts.Render("~/bundles/knockout")
+    @Scripts.Render("~/bundles/ko-user")
+    <script type="text/javascript">
+        User.EditUrl = '@Url.Action("EditAction", "User", new {id = Model.UserId})';
+        var viewModel = {
+            UserId: @Model.UserId,
+            name: '@Model.Name',
+            phone: '@Model.Phone',
+            dob: '@Model.Dob'
+        };
+        User.ToEdit(viewModel);
 
-            $(document).ready(function () {
-                $('#dob').dateDropper();
-                $('#description').summernote();
-            });
-        </script>
-    }
+        $(document).ready(function() {
+            $('#dob').dateDropper();
+            $('#description').summernote();
+            $("#description").code('@Html.Raw(Model.Description)');
+        });
+    </script>
+}

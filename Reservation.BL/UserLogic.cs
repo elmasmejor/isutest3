@@ -15,7 +15,7 @@ namespace Reservation.BL
                 return _umanager ?? (_umanager = new UserManager());
             }
         }
-        public List<User> GetUsers()
+        public IEnumerable<User> GetUsers()
         {
             return UManager.GetUsers();
         }
@@ -30,6 +30,18 @@ namespace Reservation.BL
             return UManager.AddUser(user);
         }
 
+        public User GetUser(int id)
+        {
+            var user = UManager.GetUser(id);
+            return user;
+        }
+
+        public User DeleteUser(int id)
+        {
+            var user = UManager.DeleteUser(id);
+            return user;
+        }
+
         public void AddUserType(UserType userType)
         {
             UManager.AddUserType(userType);
@@ -38,6 +50,11 @@ namespace Reservation.BL
         public void InitializeDb()
         {
             UManager.InitDb();
+        }
+
+        public bool Edit(User user)
+        {
+            return UManager.UpdateUser(user);
         }
     }
 }

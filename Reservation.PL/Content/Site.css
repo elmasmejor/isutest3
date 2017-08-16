@@ -1,140 +1,123 @@
-﻿/*
-body {
-    font-size: .85em;
-    font-family: "Segoe UI", Verdana, Helvetica, Sans-Serif;
-    color: #232323;
-    background-color: #fff;
+﻿html{
+  background-color: #f8f8f8;
 }
 
-header, footer, nav, section {
-    display: block;
-}
-*/
-
-/* Leo Custom Styles*/
-header {
-    display: block;
-    max-width: 100%;
-    background: url(../Images/header.png) round;
-    height: 150px;
+header{
+  height:150px;
+  background:url(../Images/header.png) no-repeat center;
+  background-size:cover;
 }
 
-    header span {
-        font: 80px calibri, sans-serif;
-        position: absolute;
-        margin-top: 2%;
-        margin-left: 12%;
-        padding-bottom: 9%;
-        color: white;
-        display: flex;
-    }
-
-    header .slogan {
-        /*TODO: Lane Narrow Font */
-        font: 23px calibri, sans-serif;
-        position: absolute;
-        margin-top: 2%;
-        margin-left: 30%;
-        padding-bottom: 9%;
-        color: white;
-        display: flex;
-    }
-
-footer {
-    position: absolute;
-    bottom: 0;
-    width: 100%;
-    height: 20%;
-    background-color: #f8f8f8;
+.row-header{
+  padding-top: 30px;
 }
 
-.action-section {
+.slogan{
+padding-top: 14px;
+padding-left: 0px;
+}
+
+.section-info {
     padding-bottom: 7px;
     align-content: center;
     background-color: #f8f8f8;
+    text-align: center;
 }
 
-.action-row {
-    margin-top: 5px;
-    margin-left: 20px;
+.row-info{
+    margin-top: 30px;
 }
 
-.action-name {
+.action-title {
     font: 25px calibri, sans-serif;
     color: #bb0000;
 }
 
-.action-desc {
-    font: bold 16px calibri, sans-serif;
-    color: #7c7c7c;
-    /*display: block;*/
-    text-align: center;
+.action-button {
+  width: 207px;
+  height: 44px;
+  border-radius: 0px;
+  background-color: #9f9f9f;
+  color: white;
+  font-size: 20px;
 }
 
-.action-btn {
-    font: 20px calibri, regular;
+.section-control{
+  background-color: #efefef;
+  margin-bottom: 10px;
+}
+
+.row-inputs{
+  background-color: #fafafa;
+  margin-top: 10px;
+  padding-top: 10px;
+  padding-bottom: 30px;
+}
+
+.row-list{
+  background-color: #fafafa;
+}
+
+.row-pagination{
+  background-color: #fafafa;
+  padding-bottom: 10px;
+  margin-bottom: 50px;
+}
+
+.input-control{
+      height: 40px !important;
+}
+
+.container-textarea{
+  background-color: #fafafa;
+  margin-top: 10px;
+}
+
+.row-save{
+  margin-top: 15px;
+  text-align: right;
+      margin-bottom: 20px;
+}
+
+.table-user tbody tr{
+  background-color: #efefef;
+  margin-top: 5px;
+}
+
+#saveuser,#edituser {
+    font: 20px calibri, sans-serif;
     display: inline-block;
-    background-color: #9f9f9f;
+    padding: 6px 12px;
+    margin-bottom: 0;
+    font-size: 15px;
+    font-weight: normal;
+    color: #fafafa;
+    line-height: 1.42857143;
     text-align: center;
+    white-space: nowrap;
+    vertical-align: middle;
+    -ms-touch-action: manipulation;
+    touch-action: manipulation;
+    cursor: pointer;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    border: 1px solid transparent;
+    border-radius: 0px;
+    background: #bb0000 none;
+    width: 95px;
 }
 
-.control-section {
-    background-color: #efefef;
+@media (max-width:767px) {
 }
 
-.control-container {
-    background-color: #f8f8f8;
+@media (min-width:768px) {
 }
 
-.filter {
-    margin-top: 10px;
-}
-.user-table {
-    padding-top: 20px;
+@media (min-width:992px) {
 }
 
-.user-description {
-    margin-top: 20px;
-}
-
-.form-group input {
-    height: 40px;
-}
-
-#saveuser {
-	background-color:#bb0000;
-	display:inline-block;
-	cursor:pointer;
-	color:#ffffff;
-	font-family:Verdana;
-	font-size:17px;
-	padding:7px 25px;
-	text-decoration:none;
-	/*text-shadow:1px 0px 0px #2f6627;*/
-}
-#saveuser:hover {
-	background-color:#ff0000;
-}
-#saveuser:active {
-	position:relative;
-	top:1px;
-}
-
-.save-container {
-    text-align: right;
-    padding-top: 30px;
-}
-
-#editor {
-    overflow: scroll;
-    max-height: 300px;
-}
-
-@media (max-width: 480px) {
-    header .slogan {
-        display: none;
-    }
-}
 
 /* Styles for basic forms
 -----------------------------------------------------------*/

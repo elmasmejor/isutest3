@@ -26,7 +26,6 @@ namespace Reservation.DAL
                     Console.WriteLine("Inner Exception: " + exception.InnerException.Message);
                 }
                 return false;
-                
             }
         }
 
@@ -50,7 +49,46 @@ namespace Reservation.DAL
             }
         }
 
-        public List<User> GetUsers()
+        public User DeleteUser(int id)
+        {
+            User userToDelete;
+            using (var db = new ReservationDataContext())
+            {
+                //var userToDelete = GetUser(id);
+                userToDelete = db.Users.Find(id);
+                try
+                {
+                    if (userToDelete != null)
+                    {
+                        userToDelete = db.Users.Remove(userToDelete);
+                        db.SaveChanges();
+                    }
+                }
+                catch (Exception exception)
+                {
+                    Console.WriteLine(exception);
+                }
+            }
+            return userToDelete;
+        }
+
+        public User GetUser(int id)
+        {
+            using (var db = new ReservationDataContext())
+            {
+                try
+                {
+                    return db.Users.SingleOrDefault(u => u.UserId == id);
+                }
+                catch (Exception exception)
+                {
+                    Console.WriteLine(exception);
+                }
+            }
+            return null;
+        }
+
+        public IEnumerable<User> GetUsers()
         {
             var users = new List<User>();
 
@@ -92,6 +130,34 @@ namespace Reservation.DAL
             {
                 context.Database.Initialize(force: true);
             }
+        }
+
+        public bool UpdateUser(User user)
+        {
+            using (var db = new ReservationDataContext())
+            {
+                //var userToDelete = GetUser(id);
+                var toEdit = db.Users.Find(user.UserId);
+                try
+                {
+                    if (toEdit != null)
+                    {
+                        toEdit.UserType = user.UserType;
+                        toEdit.Phone = user.Phone;
+                        toEdit.Name = user.Name;
+                        toEdit.Dob = user.Dob;
+                        toEdit.Description = user.Description;
+
+                        db.SaveChanges();
+                        return true;
+                    }
+                }
+                catch (Exception exception)
+                {
+                    Console.WriteLine(exception);
+                }
+            }
+            return false;
         }
     }
 }

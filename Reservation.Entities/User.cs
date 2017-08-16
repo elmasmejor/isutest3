@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System;
+using System.ComponentModel.DataAnnotations;
 
 namespace Reservation.Entities
 {
@@ -13,7 +14,7 @@ namespace Reservation.Entities
 
         public string Description { get; set; }
 
-        public string Dob { get; set; }
+        public DateTime Dob { get; set; }
 
         [Required]
         [StringLength(12)]

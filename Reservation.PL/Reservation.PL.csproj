@@ -227,7 +227,9 @@
     <Content Include="fonts\fontawesome-webfont.ttf" />
     <Content Include="fonts\fontawesome-webfont.eot" />
     <Content Include="fonts\FontAwesome.otf" />
+    <Content Include="Images\corp.png" />
     <Content Include="Images\header.png" />
+    <Content Include="Images\slogan.png" />
     <Content Include="Scripts\bootstrap-select.js" />
     <Content Include="Scripts\bootstrap-select.js.map" />
     <Content Include="Content\bootstrap-select.css.map" />
@@ -359,6 +361,7 @@
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\User\List.cshtml" />
     <Content Include="Views\User\Create.cshtml" />
+    <Content Include="Views\User\Edit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
